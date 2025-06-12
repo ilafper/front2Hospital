@@ -1,0 +1,145 @@
+/*INICIO DE SESION*/
+body {
+    height: 100vh;
+}
+
+.card {
+    padding: 40px;
+    border: 2px solid rgb(0, 0, 0) !important;
+}
+
+.checklogin {
+    color: white;
+    background-color: black;
+    border: none;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+/*admin*/
+/* Header general */
+header.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1881b9;
+    color: white;
+}
+
+/* Menú */
+nav.menu-nav {
+    display: flex;
+    gap: 20px;
+}
+nav.menu-nav a {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: color 0.3s ease;
+}
+
+nav.menu-nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ffffff; /* color suave para la línea */
+  transition: width 0.3s ease;
+}
+
+nav.menu-nav a:hover::after {
+  width: 100%;
+}
+
+nav.menu-nav a:hover {
+  text-decoration: none;
+}
+
+
+/* Saludo usuario */
+p.mensaje {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Icono logout */
+a.bx-log-out.salir {
+    color: white;
+    font-size: 1.8rem;
+    text-decoration: none;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+
+/*FORMU ESPECIALISTA*/
+.formuEspe{
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formu{
+    width: 100%;
+    padding: 10px;
+    border: 4px solid rgb(23, 114, 189);
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.crearEspe{
+    border: none;
+    background-color: #0077b6;
+    color: white;
+    font-weight: bold;
+    
+}
+
+.cositas {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 50px;
+  flex-wrap: wrap;
+  margin-top: 5%;
+}
+
+.opop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 400px;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.opop img {
+  width:40%;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.opop:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  text-decoration: none;
+  color: #0077b6;
+}
