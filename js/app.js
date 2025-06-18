@@ -6,6 +6,11 @@ $(document).ready(function () {
         $('.modalHistorial').fadeOut();
     });
 
+
+    $('.cerrar-modal').on('click', function () {
+        $('#modalEditarCita').fadeOut();
+    });
+
     $('.checklogin').click(async function (e) {
         e.preventDefault();
 
@@ -216,7 +221,6 @@ $(document).ready(function () {
                     };
 
                     console.log('Cita a enviar:', citaPaciente);
-                    //alert(JSON.stringify(citaPaciente)); // Congela y te deja ver los datos
 
 
                     $.ajax({
@@ -244,4 +248,79 @@ $(document).ready(function () {
         });
     }
     asignarCita();
+
+    function editarCita() {
+        $.ajax({
+            url: 'https://api-hospital-rosy.vercel.app/api/citas',
+            method: 'GET',
+            success: function (citas) {
+                const contenedor = $('.cargarCitas');
+                contenedor.empty();
+
+                citas.forEach(cita => {
+                    const tarjeta = $(`
+                    <section class="cita">
+                        <img src="../imagenes/cita.png" alt="imagen cita" class="img-fluid">
+                        <section class="datosCita">
+                        <p><strong>Paciente:</strong> ${cita.Paciente}</p>
+                        <p><strong>Fecha:</strong> ${cita.fecha}</p>
+                        <p><strong>¿Asistió?:</strong> ${cita.asistio}</p>
+                        </section>
+                    </section>
+                    `);
+
+                    // Evento click para abrir el modal
+                    tarjeta.on('click', function () {
+                        $('#citaId').val(cita._id); // Guarda el ID de la cita (importante para actualizar)
+                        $('#modalPacienteNombre').val(cita.Paciente);
+                        $('#modalFechaCita').val(cita.fecha);
+                        $('#modalAsistio').val(cita.asistio); // Rellena el select con el valor actual
+
+                        $('#modalEditarCita').fadeIn(); // Muestra el modal
+                    });
+
+                    /*editar */
+                    $('#formEditarCita').on('submit', function (e) {
+                        e.preventDefault(); // Evita que el formulario se envíe de la forma tradicional
+
+                        const citaId = $('#citaId').val(); // Obtiene el ID de la cita guardado en el input oculto
+                        const nuevoEstadoAsistio = $('#modalAsistio').val(); // Obtiene el nuevo valor del select
+
+                        // Validaciones básicas
+                        if (!citaId) {
+                            alert('Error: No se pudo obtener el ID de la cita para actualizar.');
+                            return;
+                        }
+                        if (!nuevoEstadoAsistio) {
+                            alert('Por favor, selecciona un estado de asistencia.');
+                            return;
+                        }
+
+                        // Realiza la solicitud AJAX PUT para actualizar la cita
+                        $.ajax({
+                            url: `https://api-hospital-rosy.vercel.app/api/citas/${citaId}`, // Endpoint para actualizar la cita, con el ID en la URL
+                            method: 'PUT', // Usamos PUT para actualizar un recurso existente
+                            contentType: 'application/json',
+                            data: JSON.stringify({ asistio: nuevoEstadoAsistio }),
+                            success: function () {
+                                //alert('Cita actualizada correctamente.');
+                                $('#modalEditarCita').fadeOut(); // Oculta el modal
+                                editarCita(); // Vuelve a cargar las citas para que los cambios se reflejen en la interfaz
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                console.error("Error al actualizar la cita:", textStatus, errorThrown, jqXHR.responseText);
+                                //alert('Error al actualizar la cita. Por favor, inténtalo de nuevo.');
+                            }
+                        });
+                    });
+                    contenedor.append(tarjeta);
+                });
+            },
+            error: function () {
+                alert('Error al cargar las citas.');
+            }
+        });
+    }
+    editarCita();
+
 });

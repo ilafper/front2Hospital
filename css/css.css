@@ -19,66 +19,65 @@ body {
 
 /*admin*/
 /* Header general */
-header.header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #1881b9;
-  color: white;
+  background-color: #f8f9fa;
+  padding: 5px 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Menú */
-nav.menu-nav {
+.header-left {
   display: flex;
-  gap: 20px;
+  align-items: center;
 }
 
-nav.menu-nav a {
-  position: relative;
-  color: white;
+.logo-hospital {
+  height: 75px;
+  width: auto;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.menu-nav a {
   text-decoration: none;
-  font-weight: 600;
-  padding: 8px 12px;
-  border-radius: 5px;
+  color: #007bff;
+  font-weight: 500;
+  margin: 0 15px;
   transition: color 0.3s ease;
 }
 
-nav.menu-nav a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #ffffff;
-  /* color suave para la línea */
-  transition: width 0.3s ease;
+.menu-nav a:hover {
+  color: #0056b3;
 }
 
-nav.menu-nav a:hover::after {
-  width: 100%;
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-nav.menu-nav a:hover {
-  text-decoration: none;
-}
-
-
-/* Saludo usuario */
-p.mensaje {
+.mensaje {
   margin: 0;
-  font-weight: bold;
+  font-size: 1.1rem;
+  color: #343a40;
 }
 
-/* Icono logout */
-a.bx-log-out.salir {
-  color: white;
-  font-size: 1.8rem;
-  text-decoration: none;
-  margin-left: 15px;
-  transition: color 0.3s ease;
+.nombreUsuario {
+  font-weight: bold;
+  color: #0056b3;
 }
+
+.salir {
+  font-size: 1.8rem;
+  color: #0056b3;
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 5px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
 
 
 /*FORMU ESPECIALISTA*/
@@ -218,8 +217,8 @@ a.bx-log-out.salir {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 300px;
-  height: 200px;
+  width: 400px;
+  height: 300px;
   padding: 30px;
   background-color: #ffffff;
   border-radius: 12px;
@@ -325,4 +324,160 @@ a.bx-log-out.salir {
   color: white;
   font-weight: bold;
   border: none;
+}
+
+
+/*CITAS*/
+
+.titCita{
+  text-align: center;
+  margin-top: 3%;
+}
+
+.cargarCitas{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items:center ;
+  margin-top: 5%;
+  gap: 20px;
+}
+
+.cita {
+  width: 550px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  border-radius: 12px;
+  padding: 20px 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  cursor: pointer;
+}
+
+.cita:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.cita img {
+  width: 100px;
+  height: 100px;
+}
+
+.datosCita {
+  flex-grow: 1;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.datosCita p {
+  font-size: 1.05rem;
+  color: #495057;
+}
+
+.datosCita p strong {
+  color: #212529;
+  font-weight: 600;
+}
+
+
+/*modal datos cita*/
+
+/* Estilos para el fondo oscuro del modal */
+.modal-cita {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Fijo en la pantalla */
+    z-index: 1000; /* Asegura que esté encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permite scroll si el contenido es grande */
+    background-color: rgba(0,0,0,0.6); /* Fondo semi-transparente */
+    justify-content: center; /* Centrar contenido horizontalmente */
+    align-items: center; /* Centrar contenido verticalmente */
+}
+
+/* Contenido del modal */
+.modal-contenido {
+    background-color: #fefefe;
+    margin: auto; /* Centrar el modal */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 500px; /* Ancho máximo para el modal */
+    position: relative;
+    animation-name: animatetop; /* Animación de entrada */
+    animation-duration: 0.4s;
+}
+
+/* Animación de entrada */
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+/* Botón para cerrar el modal */
+.cerrar-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.cerrar-modal:hover,
+.cerrar-modal:focus {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos para los grupos de formulario dentro del modal */
+.form-grupo {
+    margin-bottom: 15px;
+}
+
+.form-grupo label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-grupo input[type="text"],
+.form-grupo input[type="date"],
+.form-grupo select {
+    width: calc(100% - 20px); /* Ancho completo menos padding */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Incluye padding en el ancho */
+}
+
+/*prohibido cambiar*/
+.form-grupo input[readonly] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+/* Botón de guardar cambios */
+.btn-guardar-cita {
+    background-color: #ffffff; /* Verde para guardar */
+    color: #0077b6;
+    padding: 12px 20px;
+    border:  4px solid #0077b6;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-guardar-cita:hover {
+    background-color: #0077b6; /* Verde más oscuro al hover */
+    color: white;
 }
