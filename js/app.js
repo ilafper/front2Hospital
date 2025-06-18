@@ -1,4 +1,10 @@
 $(document).ready(function () {
+    /*CERRAR MODAL*/
+    $('.cerrarModal').click(function (e) {
+        e.preventDefault();
+        $('.modalFecha').fadeOut();
+        $('.modalHistorial').fadeOut();
+    });
 
     $('.checklogin').click(async function (e) {
         e.preventDefault();
@@ -100,24 +106,24 @@ $(document).ready(function () {
             e.preventDefault(); // Evita el envío tradicional del formulario
 
             const paciente = {
-            usernamePaciente: $('#usernamePaciente').val(),
-            apellidoPaciente: $('#apellidoPaciente').val(),
-            direccionPaciente: $('#direccion').val(),
-            telefonoPaciente: $('#telefono').val()
+                usernamePaciente: $('#usernamePaciente').val(),
+                apellidoPaciente: $('#apellidoPaciente').val(),
+                direccionPaciente: $('#direccion').val(),
+                telefonoPaciente: $('#telefono').val()
             };
 
             await $.ajax({
-            url: 'https://api-hospital-rosy.vercel.app/api/crearPaciente',
-            method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(paciente),
-            success: function (response) {
-                //alert(response.message);
-                $('.formu')[0].reset();
-            },
-            error: function (xhr) {
-                alert('Error al crear especialista: ' + xhr.responseText);
-            }
+                url: 'https://api-hospital-rosy.vercel.app/api/crearPaciente',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(paciente),
+                success: function (response) {
+                    //alert(response.message);
+                    $('.formu')[0].reset();
+                },
+                error: function (xhr) {
+                    alert('Error al crear especialista: ' + xhr.responseText);
+                }
             });
         });
     }
@@ -132,7 +138,7 @@ $(document).ready(function () {
                 contenedor.empty();
 
                 pacientes.forEach(paciente => {
-                const tarjeta = $(`
+                    const tarjeta = $(`
                 <section class="paciente">
                     <img src="../imagenes/paciente.png" alt="imagen paciente" class="img-fluid">
                     <section class="datos">
@@ -144,10 +150,10 @@ $(document).ready(function () {
                 </section>
                 `);
 
-                contenedor.append(tarjeta);
+                    contenedor.append(tarjeta);
                 });
 
-                
+
             },
             error: function () {
                 alert('Error al cargar los pacientes.');
@@ -155,87 +161,87 @@ $(document).ready(function () {
         });
     }
 
-   verPaciente();
+    verPaciente();
 
 
 
 
-   /*ASIGNAR CITAS A LOS PACIENTES */
-   function asignarCita() {
-    $.ajax({
-      url: 'https://api-hospital-rosy.vercel.app/api/pacientes',
-      method: 'GET',
-      success: function (pacientes) {
-        const contenedor = $('.listaPacientes');
-        contenedor.empty();
-        let pacienteSeleccionado = null;
+    /*ASIGNAR CITAS A LOS PACIENTES */
+    function asignarCita() {
+        $.ajax({
+            url: 'https://api-hospital-rosy.vercel.app/api/pacientes',
+            method: 'GET',
+            success: function (pacientes) {
+                const contenedor = $('.verPaciente');
+                contenedor.empty();
+                let pacienteSeleccionado = null;
 
-        pacientes.forEach(paciente => {
-          const tarjeta = $(`
-          <section class="paciente">
-            <img src="../imagenes/paciente.png" alt="imagen paciente" class="img-fluid">
-            <section class="datos">
-              <p><strong>Nombre:</strong> ${paciente.nombre}</p>
-              <p><strong>Apellido:</strong> ${paciente.apellido}</p>
-              <p><strong>Dirección:</strong> ${paciente.direccion}</p>
-              <p><strong>Teléfono:</strong> ${paciente.telefono}</p>
-            </section>
-          </section>
-          `);
+                pacientes.forEach(paciente => {
+                    const tarjeta = $(`
+                    <section class="paciente">
+                        <img src="../imagenes/paciente.png" alt="imagen paciente" class="img-fluid">
+                        <section class="datos">
+                        <p><strong>Nombre:</strong> ${paciente.nombre}</p>
+                        <p><strong>Apellido:</strong> ${paciente.apellido}</p>
+                        <p><strong>Dirección:</strong> ${paciente.direccion}</p>
+                        <p><strong>Teléfono:</strong> ${paciente.telefono}</p>
+                        </section>
+                    </section>
+                    `);
 
-          tarjeta.click(function (e) {
-            e.preventDefault();
-            pacienteSeleccionado = paciente;
-            $('.modalFecha').fadeIn();
-            console.log('Paciente seleccionado:', pacienteSeleccionado);
-          });
+                    tarjeta.click(function (e) {
+                        e.preventDefault();
+                        pacienteSeleccionado = paciente;
+                        $('.modalFecha').fadeIn();
+                        console.log('Paciente seleccionado:', pacienteSeleccionado);
+                    });
 
-          contenedor.append(tarjeta);
-        });
+                    contenedor.append(tarjeta);
+                });
 
-        $('.darCita').click(function () {
-          e.preventDefault();
-          const fecha = $('#fechaSeleccionada').val();
+                $('.darCita').click(function (e) {
+                    e.preventDefault();
+                    const fecha = $('#fechaSeleccionada').val();
 
-          if (!fecha || !pacienteSeleccionado) {
-            alert('Selecciona una fecha válida y un paciente.');
-            return;
-          }
+                    if (!fecha || !pacienteSeleccionado) {
+                        alert('Selecciona una fecha válida y un paciente.');
+                        return;
+                    }
 
-          const citaPaciente = {
-            nombre: pacienteSeleccionado.nombre,
-            apellido: pacienteSeleccionado.apellido,
-            codigoPaciente: pacienteSeleccionado._id,
-            fecha: fecha
-          };
+                    const citaPaciente = {
+                        nombre: pacienteSeleccionado.nombre,
+                        apellido: pacienteSeleccionado.apellido,
+                        codigoPaciente: pacienteSeleccionado._id,
+                        fecha: fecha
+                    };
 
-          console.log('Cita a enviar:', citaPaciente);
-          //alert(JSON.stringify(citaPaciente)); // Congela y te deja ver los datos
+                    console.log('Cita a enviar:', citaPaciente);
+                    //alert(JSON.stringify(citaPaciente)); // Congela y te deja ver los datos
 
 
-          $.ajax({
-            url: 'https://api-hospital-rosy.vercel.app/api/asignarCita',
-            method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(citaPaciente),
-            success: function (respuesta) {
+                    $.ajax({
+                        url: 'https://api-hospital-rosy.vercel.app/api/asignarCita',
+                        method: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(citaPaciente),
+                        success: function (respuesta) {
 
-              alert('Cita registrada correctamente', respuesta);
-              $('.modalFecha').fadeOut();
-              $('#fechaSeleccionada').val('');
-              console.log(respuesta);
+                            alert('Cita registrada correctamente', respuesta);
+                            $('.modalFecha').fadeOut();
+                            $('#fechaSeleccionada').val('');
+                            //console.log(respuesta);
 
+                        },
+                        error: function (e) {
+                            alert('Error al registrar la cita2.', e);
+                        }
+                    });
+                });
             },
-            error: function (e) {
-              alert('Error al registrar la cita.', e);
+            error: function () {
+                alert('Error al cargar los pacientes.');
             }
-          });
         });
-      },
-      error: function () {
-        alert('Error al cargar los pacientes.');
-      }
-    });
-  }
-  asignarCita();
+    }
+    asignarCita();
 });

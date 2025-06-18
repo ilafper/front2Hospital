@@ -1,38 +1,39 @@
 /*INICIO DE SESION*/
 body {
-    height: 100vh;
+  height: 100vh;
 }
 
 .card {
-    padding: 40px;
-    border: 2px solid rgb(0, 0, 0) !important;
+  padding: 40px;
+  border: 2px solid rgb(0, 0, 0) !important;
 }
 
 .checklogin {
-    color: white;
-    background-color: black;
-    border: none;
-    font-weight: bold;
-    border-radius: 3px;
-    padding: 10px;
+  color: white;
+  background-color: black;
+  border: none;
+  font-weight: bold;
+  border-radius: 3px;
+  padding: 10px;
 }
 
 /*admin*/
 /* Header general */
 header.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #1881b9;
-    color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #1881b9;
+  color: white;
 }
 
 /* Menú */
 nav.menu-nav {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
 }
+
 nav.menu-nav a {
   position: relative;
   color: white;
@@ -50,7 +51,8 @@ nav.menu-nav a::after {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #ffffff; /* color suave para la línea */
+  background-color: #ffffff;
+  /* color suave para la línea */
   transition: width 0.3s ease;
 }
 
@@ -65,44 +67,45 @@ nav.menu-nav a:hover {
 
 /* Saludo usuario */
 p.mensaje {
-    margin: 0;
-    font-weight: bold;
+  margin: 0;
+  font-weight: bold;
 }
 
 /* Icono logout */
 a.bx-log-out.salir {
-    color: white;
-    font-size: 1.8rem;
-    text-decoration: none;
-    margin-left: 15px;
-    transition: color 0.3s ease;
+  color: white;
+  font-size: 1.8rem;
+  text-decoration: none;
+  margin-left: 15px;
+  transition: color 0.3s ease;
 }
 
 
 /*FORMU ESPECIALISTA*/
-.formuEspe{
-    width: 100%;
-    margin-top: 5%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.formuEspe {
+  width: 100%;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.formu{
-    width: 100%;
-    padding: 10px;
-    border: 4px solid rgb(23, 114, 189);
-    border-radius: 10px;
-    padding: 30px;
+.formu {
+  width: 100%;
+  padding: 10px;
+  border: 4px solid rgb(23, 114, 189);
+  border-radius: 10px;
+  padding: 30px;
 }
 
-.crearEspe, .crearPaciente{
-    border: none;
-    background-color: #0077b6;
-    color: white;
-    font-weight: bold;
-    
+.crearEspe,
+.crearPaciente {
+  border: none;
+  background-color: #0077b6;
+  color: white;
+  font-weight: bold;
+
 }
 
 .cositas {
@@ -124,7 +127,7 @@ a.bx-log-out.salir {
   padding: 30px;
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
   text-decoration: none;
   color: #333;
@@ -132,25 +135,26 @@ a.bx-log-out.salir {
 }
 
 .opop img {
-  width:40%;
+  width: 40%;
   object-fit: contain;
   margin-bottom: 15px;
 }
 
 .opop:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
   text-decoration: none;
   color: #0077b6;
 }
 
 
 
-.titEspe{
+.titEspe {
   text-align: center;
   margin-top: 3%;
 }
-.cargarEspe{
+
+.cargarEspe {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -158,6 +162,7 @@ a.bx-log-out.salir {
   margin-top: 4%;
 
 }
+
 /*targeta especialista*/
 .especialista {
   width: 400px;
@@ -169,7 +174,7 @@ a.bx-log-out.salir {
   margin-bottom: 15px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
+
 }
 
 .especialista img {
@@ -218,7 +223,7 @@ a.bx-log-out.salir {
   padding: 30px;
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
   text-decoration: none;
   color: #333;
@@ -226,14 +231,14 @@ a.bx-log-out.salir {
 }
 
 .opcion img {
-  width:40%;
+  width: 40%;
   object-fit: contain;
   margin-bottom: 15px;
 }
 
 .opcion:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
   text-decoration: none;
   color: #0077b6;
 }
@@ -247,12 +252,13 @@ a.bx-log-out.salir {
 
 
 
-.titPaciente{
+.titPaciente {
   text-align: center;
   margin-top: 2%;
 }
+
 /*ver pacientes*/
-.verPaciente{
+.verPaciente {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -302,3 +308,21 @@ a.bx-log-out.salir {
   color: #495057;
 }
 
+/*MODAL FECHA*/
+.modalFecha {
+  display: none;
+  /* Oculto inicialmente */
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.darCita {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
