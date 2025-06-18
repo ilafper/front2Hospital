@@ -97,7 +97,7 @@ a.bx-log-out.salir {
     padding: 30px;
 }
 
-.crearEspe{
+.crearEspe, .crearPaciente{
     border: none;
     background-color: #0077b6;
     color: white;
@@ -194,3 +194,111 @@ a.bx-log-out.salir {
 .datosEspe p strong {
   color: #555;
 }
+
+
+/*Menu Aministrativo*/
+
+
+.opcionesAdministrativo {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 50px;
+  flex-wrap: wrap;
+  margin-top: 5%;
+}
+
+.opcion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 200px;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.opcion img {
+  width:40%;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.opcion:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  text-decoration: none;
+  color: #0077b6;
+}
+
+
+
+
+
+
+
+
+
+
+.titPaciente{
+  text-align: center;
+  margin-top: 2%;
+}
+/*ver pacientes*/
+.verPaciente{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 5%;
+}
+
+/*targeta paciente*/
+.paciente {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 400px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.247);
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  cursor: pointer;
+}
+
+.paciente:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.paciente img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 5px solid #007bff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.datos {
+  flex-grow: 1;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.datos p {
+  margin: 8px 0;
+  font-size: 1.05rem;
+  color: #495057;
+}
+
