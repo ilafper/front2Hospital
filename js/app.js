@@ -33,10 +33,63 @@ $(document).ready(function () {
             console.error(error);
         }
     });
-    
 
+    /*Cargar especialistas */
+    function cargarEspecialistas() {
+        $.ajax({
+            url: 'https://api-hospital-rosy.vercel.app/api/especialistas',
+            method: 'GET',
+            success: function (especialistas) {
+                const contenedorEspe = $('.cargarEspe');
+                contenedorEspe.empty();
 
+                especialistas.forEach(especialista => {
+                    const tarjeta = $(`
+                    <section class="especialista">
+                        <img src="../imagenes/medic.png" alt="imagen paciente" class="img-fluid">
+                        <section class="datosEspe">
+                        <p><strong>Nombre:</strong> ${especialista.username}</p>
+                        <p><strong>Apellido:</strong> ${especialista.username}</p>
+                        <p><strong>Dirección:</strong> ${especialista.username}</p>
+                        <p><strong>Especialidad:</strong> ${especialista.especialidad}</p>
+                        </section>
+                    </section>
+                    `);
+                    contenedorEspe.append(tarjeta);
+                });
+            },
+            error: function () {
+                alert('Error al cargar los pacientes.');
+            }
+        });
+    }
+    cargarEspecialistas();
+    /*Crear especialista */
+    function crearEspe() {
+        $('.crearEspe').click(async function (e) {
+            e.preventDefault(); // Evita el envío tradicional del formulario
 
+            const especialista = {
+                username: $('#username').val(),
+                apellido: $('#apellido').val(),
+                direccion: $('#direccion').val(),
+                especialidad: $('#especialidad').val()
+            };
 
-
+            await $.ajax({
+                url: 'https://api-hospital-rosy.vercel.app/api/crearEspecialistas',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(especialista),
+                success: function (response) {
+                    //alert(response.message);
+                    $('.formu')[0].reset();
+                },
+                error: function (xhr) {
+                    alert('Error al crear especialista: ' + xhr.responseText);
+                }
+            });
+        });
+    }
+    crearEspe();
 });
